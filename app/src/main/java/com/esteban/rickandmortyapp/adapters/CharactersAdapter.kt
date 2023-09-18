@@ -46,10 +46,7 @@ class CharactersAdapter constructor():
         val character = differ.currentList[position]
         holder.itemView.apply {
             Glide.with(this).load(character.image).into(ivCharacterImage)
-            tvStatus.text = character.status
             tvName.text = character.name
-            tvSpecies.text = character.species
-            tvGender.text = character.gender
             setOnClickListener {
                 onItemClickListener?.let { it(character) }
             }

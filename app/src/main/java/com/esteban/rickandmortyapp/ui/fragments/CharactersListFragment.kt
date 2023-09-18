@@ -26,7 +26,10 @@ class CharactersListFragment : Fragment(R.layout.fragment_characters_list) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        activity?.actionBar?.setDisplayHomeAsUpEnabled(false)
         viewModel = (activity as CharactersActivity).viewModel
+        charactersAdapter = CharactersAdapter()
         setUpRecyclerView()
 
         charactersAdapter.setOnClickListener {
