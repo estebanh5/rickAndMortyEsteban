@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/news_nav_graph"
+    app:startDestination="@id/charactersFragment">
+
+    <fragment
+        android:id="@+id/charactersFragment"
+        android:name="com.esteban.rickandmortyapp.ui.fragments.CharactersListFragment"
+        android:label="CharactersListFragment" >
+        <action
+            android:id="@+id/action_charactersListFragment_to_displayCharacterFragment"
+            app:destination="@id/displayCharacterFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/displayCharacterFragment"
+        android:name="com.esteban.rickandmortyapp.ui.fragments.DisplayCharacterFragment"
+        android:label="DisplayCharacterFragment" >
+        <argument
+            android:name="character"
+            app:argType="com.esteban.rickandmortyapp.models.RickAndMortyCharacter" />
+    </fragment>
+</navigation>

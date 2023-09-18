@@ -1,6 +1,8 @@
 package com.esteban.rickandmortyapp.models
 
-data class RickAndMortyCharacters(
+import java.io.Serializable
+
+data class RickAndMortyCharacter(
     val created: String,
     val episode: List<String>,
     val gender: String,
@@ -13,4 +15,4 @@ data class RickAndMortyCharacters(
     val status: String,
     val type: String,
     val url: String
-)
+) : Serializable

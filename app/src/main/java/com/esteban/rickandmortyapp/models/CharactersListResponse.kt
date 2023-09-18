@@ -2,5 +2,5 @@ package com.esteban.rickandmortyapp.models
 
 data class CharactersListResponse(
     val info: Info,
-    val results: MutableList<RickAndMortyCharacters>
+    val results: MutableList<RickAndMortyCharacter>
 )
