@@ -10,9 +10,15 @@ import com.bumptech.glide.Glide
 import com.esteban.rickandmortyapp.R
 import com.esteban.rickandmortyapp.models.RickAndMortyCharacter
 import kotlinx.android.synthetic.main.item_character_preview.view.*
+import kotlinx.android.synthetic.main.item_character_preview.view.chipLocation
+import kotlinx.android.synthetic.main.item_character_preview.view.chipOrigin
+import kotlinx.android.synthetic.main.item_character_preview.view.chipType
+import kotlinx.android.synthetic.main.item_character_preview.view.ivCharacterImage
+import kotlinx.android.synthetic.main.item_character_preview.view.tvName
+import kotlinx.android.synthetic.main.item_character_search.view.*
 
-class CharactersAdapter constructor():
-    RecyclerView.Adapter<CharactersAdapter.CharacterViewHolder>() {
+class CharacterSearchAdapter constructor():
+    RecyclerView.Adapter<CharacterSearchAdapter.CharacterViewHolder>() {
 
 
     inner class CharacterViewHolder(itemView: View): RecyclerView.ViewHolder(itemView)
@@ -36,7 +42,8 @@ class CharactersAdapter constructor():
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharacterViewHolder {
         return CharacterViewHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.item_character_preview, parent,
+            LayoutInflater.from(parent.context).inflate(
+                R.layout.item_character_search, parent,
                 false),
 
             )
@@ -50,6 +57,7 @@ class CharactersAdapter constructor():
             chipOrigin.text = character.origin.name
             chipLocation.text = character.location.name
             chipType.text = character.type
+            tvDescription.text = character.status
             setOnClickListener {
                 onItemClickListener?.let { it(character) }
             }

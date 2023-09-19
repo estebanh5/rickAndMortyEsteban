@@ -2,12 +2,11 @@ package com.esteban.rickandmortyapp.ui.fragments
 
 import android.os.Bundle
 import android.view.View
-import android.widget.AbsListView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+
+import androidx.recyclerview.widget.RecyclerView.HORIZONTAL
 import com.esteban.rickandmortyapp.R
 import com.esteban.rickandmortyapp.adapters.CharactersAdapter
 import com.esteban.rickandmortyapp.ui.CharactersActivity
@@ -32,6 +31,9 @@ class CharactersListFragment : Fragment(R.layout.fragment_characters_list) {
         charactersAdapter = CharactersAdapter()
         setUpRecyclerView()
 
+        (activity as CharactersActivity).supportActionBar?.setDisplayHomeAsUpEnabled(false)
+        (activity as CharactersActivity).supportActionBar?.title = getString(R.string.home)
+
         charactersAdapter.setOnClickListener {
             val bundle = Bundle().apply {
                 putSerializable("character", it)
@@ -39,6 +41,10 @@ class CharactersListFragment : Fragment(R.layout.fragment_characters_list) {
             findNavController().navigate(R.id.action_charactersListFragment_to_displayCharacterFragment, bundle)
         }
 
+        sbCharacters.isActivated = false
+        sbCharacters.setOnClickListener {
+            findNavController().navigate(R.id.action_charactersListFragment_to_searchCharacters)
+        }
 
         viewModel.characters.observe(viewLifecycleOwner) { response ->
 
@@ -81,12 +87,12 @@ class CharactersListFragment : Fragment(R.layout.fragment_characters_list) {
 
 
     private fun hideProgressBar() {
-        paginationProgressBar.visibility = View.INVISIBLE
+        //paginationProgressBar.visibility = View.INVISIBLE
         isLoading = false
     }
 
     private fun showProgressBar() {
-        paginationProgressBar.visibility = View.VISIBLE
+        //paginationProgressBar.visibility = View.VISIBLE
         isLoading = true
     }
 
@@ -94,49 +100,16 @@ class CharactersListFragment : Fragment(R.layout.fragment_characters_list) {
     var isLastPage = false
     var isScrolling = false
 
-    private val scrollListener = object : RecyclerView.OnScrollListener() {
-
-        override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-            super.onScrolled(recyclerView, dx, dy)
-
-            val layoutManager = recyclerView.layoutManager as LinearLayoutManager
-
-            val firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition()
-            val visibleItemCount = layoutManager.childCount
-            val totalItemCount = layoutManager.itemCount
-
-            val isNotLoadingAndNotLastPage = !isLoading && !isLastPage
-            val isAtLastItem = firstVisibleItemPosition + visibleItemCount >= totalItemCount
-            val isNotAtBeginning = firstVisibleItemPosition >= 0
-            val isTotalMoreThanVisible = totalItemCount >= QUERY_PAGE_SIZE
-            val shouldPaginate = isNotLoadingAndNotLastPage && isAtLastItem && isNotAtBeginning && isTotalMoreThanVisible && isScrolling
-
-
-            if(shouldPaginate) {
-                viewModel.getCharacters()
-                isScrolling = false
-            }
-
-        }
-
-
-        override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-            super.onScrollStateChanged(recyclerView, newState)
-
-            if(newState == AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL) {
-                isScrolling = true
-            }
-        }
-
-
-    }
-
 
     private fun setUpRecyclerView() {
+
         rvCharacters.apply {
             adapter = charactersAdapter
-            layoutManager = LinearLayoutManager(activity)
-            addOnScrollListener(scrollListener)
+            layoutManager = com.jackandphantom.carouselrecyclerview.CarouselLayoutManager(isLoop = true, isItem3D= true, ratio= 0.7f, flat =true, alpha=true, isScrollingEnabled = true, HORIZONTAL,)
+            set3DItem(true)
+            setAlpha(true)
+            setInfinite(true)
+
         }
     }
 }

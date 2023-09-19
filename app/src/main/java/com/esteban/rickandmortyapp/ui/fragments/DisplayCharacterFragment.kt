@@ -34,6 +34,10 @@ class DisplayCharacterFragment : Fragment(R.layout.fragment_display_character) {
         tvStatus.text = character?.status
 
 
+        (activity as CharactersActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        (activity as CharactersActivity).supportActionBar?.title = getString(R.string.details)
+
+
 
     }
 

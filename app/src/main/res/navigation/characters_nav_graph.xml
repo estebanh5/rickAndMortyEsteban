@@ -15,6 +15,14 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"/>
+
+        <action
+            android:id="@+id/action_charactersListFragment_to_searchCharacters"
+            app:destination="@id/searchCharacterFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
 
     <fragment
@@ -24,5 +32,23 @@
         <argument
             android:name="character"
             app:argType="com.esteban.rickandmortyapp.models.RickAndMortyCharacter" />
+    </fragment>
+
+
+
+    <fragment
+        android:id="@+id/searchCharacterFragment"
+        android:name="com.esteban.rickandmortyapp.ui.fragments.SearchCharactersFragment"
+        android:label="SearchCharacterFragment" >
+
+
+        <action
+            android:id="@+id/action_searchCharacters_to_displayCharacter"
+            app:destination="@id/displayCharacterFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+
     </fragment>
 </navigation>

@@ -66,6 +66,11 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.11.0'
     kapt "com.google.dagger:hilt-android-compiler:2.37"
 
+    //Carousel Recyclerview
+    implementation 'com.github.sparrow007:carouselrecyclerview:1.2.6'
+
+
+
     constraints{
         implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.0'
         implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.0'

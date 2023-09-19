@@ -1,11 +1,14 @@
 package com.esteban.rickandmortyapp.ui
 
-import androidx.appcompat.app.AppCompatActivity
+
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.NavHostFragment
 import com.esteban.rickandmortyapp.R
 import com.esteban.rickandmortyapp.repository.CharactersRepository
 import com.esteban.rickandmortyapp.ui.viewmodel.CharactersViewModel
+
 
 class CharactersActivity : AppCompatActivity() {
 
@@ -22,4 +25,7 @@ class CharactersActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
     }
+
+
+
 }
