@@ -4,40 +4,46 @@ import android.os.Bundle
 import android.view.View
 import android.widget.AbsListView
 import android.widget.Toast
+import android.window.OnBackAnimationCallback
+import androidx.activity.OnBackPressedCallback
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.FragmentNavigator
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.esteban.rickandmortyapp.R
+import com.esteban.rickandmortyapp.RickAndMortyApplication
 import com.esteban.rickandmortyapp.adapters.CharacterSearchAdapter
+import com.esteban.rickandmortyapp.dagger.DaggerRickMortyComponent
 import com.esteban.rickandmortyapp.ui.CharactersActivity
 import com.esteban.rickandmortyapp.ui.viewmodel.CharactersViewModel
 import com.esteban.rickandmortyapp.util.Constants
 import com.esteban.rickandmortyapp.util.Constants.Companion.SEARCH_CHARACTERS_TIME_DELAY
 import com.esteban.rickandmortyapp.util.Resource
+import com.google.android.material.imageview.ShapeableImageView
 import kotlinx.android.synthetic.main.fragment_search_character.*
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 
 class SearchCharactersFragment : Fragment(R.layout.fragment_search_character) {
 
 
     lateinit var viewModel: CharactersViewModel
-    lateinit var charactersAdapter: CharacterSearchAdapter
+    @Inject lateinit var charactersAdapter: CharacterSearchAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        (activity?.application as RickAndMortyApplication).rickMortyComponent.inject(this)
+
         viewModel = (activity as CharactersActivity).viewModel
 
-        charactersAdapter = CharacterSearchAdapter()
-
         setUpRecyclerView()
-
-
         (activity as CharactersActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
         (activity as CharactersActivity).supportActionBar?.title = getString(R.string.search)
 
@@ -45,6 +51,7 @@ class SearchCharactersFragment : Fragment(R.layout.fragment_search_character) {
 
 
         var job: Job? = null
+        etSearch.requestFocus()
         etSearch.addTextChangedListener { editable ->
 
             job?.cancel()
@@ -53,6 +60,7 @@ class SearchCharactersFragment : Fragment(R.layout.fragment_search_character) {
 
                 editable?.let {
                     if(editable.toString().isNotEmpty()) {
+                        viewModel.searchCharactersPage = 1
                         viewModel.searchCharacters(editable.toString())
                     }
                 }
@@ -61,12 +69,17 @@ class SearchCharactersFragment : Fragment(R.layout.fragment_search_character) {
 
         }
 
+
+
         charactersAdapter.setOnClickListener {
+            _, character ->
             val bundle = Bundle().apply {
-                putSerializable("character", it)
+                putSerializable("character", character)
             }
+
+            val extras = FragmentNavigator.Extras.Builder().addSharedElements(mapOf(view.findViewById<ShapeableImageView>(R.id.ivCharacterImage) to "characterContainer")).build()
             findNavController().navigate(R.id.action_searchCharacters_to_displayCharacter,
-                bundle)
+                bundle, null, extras)
         }
 
 
@@ -107,6 +120,7 @@ class SearchCharactersFragment : Fragment(R.layout.fragment_search_character) {
 
         }
     }
+
 
     var isLoading = false
     var isLastPage = false
@@ -170,4 +184,7 @@ class SearchCharactersFragment : Fragment(R.layout.fragment_search_character) {
         paginationProgressBar.visibility = View.VISIBLE
         isLoading = true
     }
+
+
+
 }

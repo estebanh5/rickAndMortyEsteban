@@ -4,4 +4,15 @@
     <string name="search">Search</string>
     <string name="home">Home</string>
     <string name="details">Details</string>
+    <string name="character_container" translatable="false">characterContainer</string>
+    <string name="search_in_google">Search in Google</string>
+    <string name="name_placeholder" translatable="false">NAME</string>
+    <string name="status_placeholder" translatable="false">STATUS</string>
+    <string name="species_placeholder" translatable="false">SPECIES</string>
+    <string name="gender_placeholder" translatable="false">GENDER</string>
+    <string name="funny_placeholder" translatable="false">Funny</string>
+    <string name="weird_placeholder" translatable="false">Weird</string>
+    <string name="interesting_placeholder" translatable="false">Interesting</string>
+    <string name="rick_and_morty" translatable="false">Rick And Morty</string>
+
 </resources>

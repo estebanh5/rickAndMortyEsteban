@@ -119,7 +119,7 @@ class CharactersViewModel(app: Application, private val charactersRepository: Ch
                     oldCharacters?.addAll(newCharacters)
 
                 }
-                return Resource.Success(searchCharactersResponse?: resultResponse)
+                return Resource.Success(resultResponse)
             }
         }
         return Resource.Error(response.message())

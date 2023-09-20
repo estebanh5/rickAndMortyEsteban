@@ -9,15 +9,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.esteban.rickandmortyapp.R
 import com.esteban.rickandmortyapp.models.RickAndMortyCharacter
-import kotlinx.android.synthetic.main.item_character_preview.view.*
+import kotlinx.android.synthetic.main.fragment_display_character.*
 import kotlinx.android.synthetic.main.item_character_preview.view.chipLocation
 import kotlinx.android.synthetic.main.item_character_preview.view.chipOrigin
 import kotlinx.android.synthetic.main.item_character_preview.view.chipType
 import kotlinx.android.synthetic.main.item_character_preview.view.ivCharacterImage
 import kotlinx.android.synthetic.main.item_character_preview.view.tvName
 import kotlinx.android.synthetic.main.item_character_search.view.*
+import javax.inject.Inject
 
-class CharacterSearchAdapter constructor():
+class CharacterSearchAdapter @Inject constructor():
     RecyclerView.Adapter<CharacterSearchAdapter.CharacterViewHolder>() {
 
 
@@ -57,18 +58,25 @@ class CharacterSearchAdapter constructor():
             chipOrigin.text = character.origin.name
             chipLocation.text = character.location.name
             chipType.text = character.type
+
+            if(character?.type?.isNotEmpty()!!) {
+                chipType.text = character.type
+            }else {
+                chipType.visibility = View.INVISIBLE
+            }
+
             tvDescription.text = character.status
             setOnClickListener {
-                onItemClickListener?.let { it(character) }
+                onItemClickListener?.let { it(holder.itemView, character) }
             }
         }
     }
 
 
 
-    private var onItemClickListener: ((RickAndMortyCharacter) -> Unit)? = null
+    private var onItemClickListener: ((View, RickAndMortyCharacter) -> Unit)? = null
 
-    fun setOnClickListener(listener: (RickAndMortyCharacter) -> Unit) {
+    fun setOnClickListener(listener: (View, RickAndMortyCharacter) -> Unit) {
         onItemClickListener = listener
     }
 

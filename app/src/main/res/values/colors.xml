@@ -17,13 +17,14 @@
     <color name="colorPrimaryDark">#3b5072</color>
     <color name="colorAccent">#465e87</color>
 
-    <color name="contentContainerColor">#eeeeee</color>
+    <color name="contentContainerColor">#F5F5F5</color>
     <color name="cardBackgroundColor">#ffffff</color>
     <color name="primaryTextColor">#212121</color>
     <color name="secondaryTextColor">#657786</color>
     <color name="iconColor">#657786</color>
-    <color name="dividerColor">#C5C5C5</color>
+    <color name="dividerColor">#E7E7E7</color>
     <color name="suggestionIconColor">#657786</color>
     <color name="suggestionTextColor">#657786</color>
     <color name="suggestionSelectedTextColor">#212121</color>
+    <color name="mediumGray">#ACACAC</color>
 </resources>

@@ -4,21 +4,42 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <androidx.appcompat.widget.SearchView
-        android:id="@+id/sbCharacters"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/etCharacters"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        app:cardCornerRadius="20dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:iconifiedByDefault="false"
-        android:background="@drawable/search_view_bg"
-        app:queryHint="@string/search_character"
-        app:searchIcon="@drawable/ic_search"/>
+        android:elevation="10dp">
+
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="15dp">
+
+            <ImageButton
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_baseline_search_24"
+                android:background="@android:color/transparent"/>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/search_character"/>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.cardview.widget.CardView>
 
     <com.jackandphantom.carouselrecyclerview.CarouselRecyclerview
 
@@ -29,6 +50,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/sbCharacters" />
+        app:layout_constraintTop_toBottomOf="@id/etCharacters" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

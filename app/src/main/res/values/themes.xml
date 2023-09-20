@@ -11,6 +11,8 @@
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+
+        <item name="android:windowActivityTransitions">true</item>
         <!-- Customize your theme here. -->
     </style>
 
@@ -25,8 +27,20 @@
         <item name="cornerSize">15dp</item>
     </style>
 
+    <style name="PartialRoundedSquare">
+        <item name="cornerSizeBottomRight">15dp</item>
+        <item name="cornerSizeBottomLeft">15dp</item>
+    </style>
+
     <style name="customRatingBar"
         parent="android:style/Widget.Material.RatingBar.Small">
 
+    </style>
+
+    <style name="CustomButton" parent="Widget.AppCompat.Button">
+        <item name="colorButtonNormal">@color/colorPrimary</item>
+        <item name="colorControlHighlight">@color/colorAccent</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="cornerSize">15dp</item>
     </style>
 </resources>

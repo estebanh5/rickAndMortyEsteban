@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="300dp"
-    android:layout_height="460dp"
+    android:layout_height="430dp"
     app:cardCornerRadius="20dp">
 
 
@@ -24,7 +24,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:shapeAppearanceOverlay="@style/RoundedSquare"/>
+            app:shapeAppearanceOverlay="@style/RoundedSquare"
+            android:transitionName="@string/character_container"/>
 
 
         <TextView
@@ -34,7 +35,7 @@
             android:layout_marginTop="12dp"
             android:ellipsize="end"
             android:maxLines="3"
-            android:text="NAME"
+            android:text="@string/name_placeholder"
             android:textAlignment="center"
             android:textColor="@android:color/black"
             android:textSize="20sp"
@@ -44,89 +45,67 @@
             app:layout_constraintStart_toStartOf="@+id/ivCharacterImage"
             app:layout_constraintTop_toBottomOf="@+id/ivCharacterImage" />
 
-        <androidx.appcompat.widget.LinearLayoutCompat
+
+        <HorizontalScrollView
             android:id="@+id/linearLayoutCompat"
             android:layout_width="0dp"
             android:layout_height="35dp"
-            android:layout_marginTop="8dp"
-            android:gravity="center"
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            android:scrollIndicators="none"
+            app:layout_constraintEnd_toEndOf="@+id/tvName"
+            app:layout_constraintStart_toStartOf="@+id/tvName"
             app:layout_constraintTop_toBottomOf="@+id/tvName">
 
+            <androidx.appcompat.widget.LinearLayoutCompat
 
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipOrigin"
-                style="@style/Colors_Widget.MaterialComponents.Chip.Choice"
-                android:layout_width="wrap_content"
-                android:layout_height="35dp"
-                android:layout_marginHorizontal="5dp"
-                android:text="Funny"
-                android:textAlignment="center"
-                android:textSize="10sp"
-                android:layout_marginVertical="0dp"/>
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipLocation"
-                style="@style/Colors_Widget.MaterialComponents.Chip.Choice"
-                android:layout_width="wrap_content"
-                android:layout_height="35dp"
-                android:layout_marginHorizontal="5dp"
-                android:text="Weird"
-                android:textAlignment="center"
-                android:textSize="10sp" />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipType"
-                style="@style/Colors_Widget.MaterialComponents.Chip.Choice"
-                android:layout_width="wrap_content"
-                android:layout_height="35dp"
-                android:layout_marginHorizontal="5dp"
-                android:text="Interesting"
-                android:textAlignment="center"
-                android:textSize="10sp" />
-
-
-        </androidx.appcompat.widget.LinearLayoutCompat>
-
-
-        <androidx.appcompat.widget.LinearLayoutCompat
-            android:id="@+id/ratingContainer"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:gravity="center"
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayoutCompat"
-            >
-
-
-
-            <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="2.5"
-                android:paddingEnd="5dp"
-                android:textSize="12sp"
-                android:textStyle="bold"/>
+                android:layout_marginTop="8dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipOrigin"
+                    style="@style/Colors_Widget.MaterialComponents.Chip.Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:layout_marginHorizontal="5dp"
+                    android:layout_marginVertical="0dp"
+                    android:enabled="false"
+                    android:text="@string/funny_placeholder"
+                    android:textAlignment="center"
+                    android:textSize="11sp" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipLocation"
+                    style="@style/Colors_Widget.MaterialComponents.Chip.Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:layout_marginHorizontal="5dp"
+                    android:enabled="false"
+                    android:text="@string/weird_placeholder"
+                    android:textAlignment="center"
+                    android:textSize="11sp" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipType"
+                    style="@style/Colors_Widget.MaterialComponents.Chip.Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:layout_marginHorizontal="5dp"
+                    android:enabled="false"
+                    android:text="@string/interesting_placeholder"
+                    android:textAlignment="center"
+                    android:textSize="11sp" />
+
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </HorizontalScrollView>
 
 
 
 
-            <RatingBar
-                android:id="@+id/rbCharacter"
-                style="@style/Widget.AppCompat.RatingBar.Small"
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                android:isIndicator="true"
-                android:numStars="5"
-                android:stepSize="0.1" />
-
-
-        </androidx.appcompat.widget.LinearLayoutCompat>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,66 +5,149 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <ImageView
+
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/ivCharacterImage"
         android:layout_width="0dp"
-        android:layout_height="300dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="44dp"
-        android:layout_marginEnd="40dp"
+        android:layout_height="400dp"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearanceOverlay="@style/PartialRoundedSquare"
+        android:transitionName="@string/character_container"/>
 
-
-    <TextView
-        android:id="@+id/tvStatus"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="STATUS"
-        android:textColor="@android:color/black"
-        app:layout_constraintStart_toStartOf="@+id/tvSpecies"
-        app:layout_constraintTop_toBottomOf="@+id/tvSpecies" />
 
     <TextView
         android:id="@+id/tvName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="24dp"
         android:ellipsize="end"
         android:maxLines="3"
-        android:text="NAME"
+        android:text="@string/name_placeholder"
         android:textColor="@android:color/black"
         android:textSize="15sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/ivCharacterImage"
         app:layout_constraintTop_toBottomOf="@+id/ivCharacterImage" />
 
+
+    <TextView
+        android:id="@+id/tvStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginEnd="12dp"
+        android:text="@string/status_placeholder"
+        android:textSize="12sp"
+        android:textColor="@android:color/black"
+        app:layout_constraintEnd_toStartOf="@+id/tvSpecies"
+        app:layout_constraintTop_toTopOf="@+id/tvSpecies" />
+
+
     <TextView
         android:id="@+id/tvSpecies"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="316dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="36dp"
         android:ellipsize="end"
         android:maxLines="5"
-        android:text="SPECIES"
+        android:text="@string/species_placeholder"
+        android:textSize="12sp"
         android:textColor="@android:color/black"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/tvName"
-        app:layout_constraintTop_toBottomOf="@+id/tvName" />
+        app:layout_constraintTop_toBottomOf="@+id/ivCharacterImage" />
+
 
     <TextView
         android:id="@+id/tvGender"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="MALE"
+        android:layout_marginEnd="12dp"
+        android:text="@string/gender_placeholder"
+        android:textSize="12sp"
         android:textColor="@android:color/black"
-        app:layout_constraintStart_toStartOf="@+id/tvStatus"
-        app:layout_constraintTop_toBottomOf="@+id/tvStatus" />
+        app:layout_constraintEnd_toStartOf="@+id/tvStatus"
+        app:layout_constraintTop_toTopOf="@+id/tvStatus" />
+
+
+    <HorizontalScrollView
+        android:id="@+id/linearLayoutCompat"
+        android:layout_width="0dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/tvSpecies"
+        app:layout_constraintStart_toStartOf="@+id/tvName"
+        app:layout_constraintTop_toBottomOf="@+id/tvName"
+        android:scrollIndicators="none">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipOrigin"
+                style="@style/Colors_Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_marginHorizontal="5dp"
+                android:layout_marginVertical="0dp"
+                android:enabled="false"
+                android:text="@string/funny_placeholder"
+                android:textAlignment="center"
+                android:textSize="11sp" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipLocation"
+                style="@style/Colors_Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_marginHorizontal="5dp"
+                android:enabled="false"
+                android:text="@string/weird_placeholder"
+                android:textAlignment="center"
+                android:textSize="11sp" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipType"
+                style="@style/Colors_Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_marginHorizontal="5dp"
+                android:enabled="false"
+                android:text="@string/interesting_placeholder"
+                android:textAlignment="center"
+                android:textSize="11sp" />
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </HorizontalScrollView>
+
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btSearch"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="32dp"
+        android:text="@string/search_in_google"
+        android:textSize="12sp"
+        android:theme="@style/CustomButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayoutCompat"
+        app:cornerRadius="15dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
